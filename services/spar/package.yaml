@@ -1,0 +1,51 @@
+name:          spar
+version:       '0.1'
+synopsis:      'User Service for SSO provisioning and authentication.'
+author:        Wire Swiss GmbH
+maintainer:    Wire Swiss GmbH <backend@wire.com>
+copyright:     (c) 2018 Wire Swiss GmbH
+license:       AGPL-3
+license-file:  LICENSE
+category:      System
+description:   'See README.md'
+
+ghc-options: -j -O2 -Wall -Wno-redundant-constraints -fwarn-tabs -Werror
+
+dependencies:
+  - base
+  - saml2-web-sso
+
+library:
+  source-dirs:
+    - src
+  include-dirs:
+    - src
+
+tests:
+  spec:
+    main: Main.hs
+    source-dirs:
+      - test
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+    dependencies:
+      - hedgehog
+      - hspec
+      - hspec-discover
+      - hspec-wai
+      - pretty-show
+      - process
+      - shelly
+      - spar
+      - temporary
+      - uniplate
+
+executables:
+  spar:
+    main: Main.hs
+    source-dirs: exec
+  spar-schema:
+    main: Main.hs
+    source-dirs: schema/src
+  spar-integration:
+    main: Main.hs
+    source-dirs: test/integration
