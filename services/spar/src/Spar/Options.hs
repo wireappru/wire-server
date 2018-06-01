@@ -1,4 +1,4 @@
-module Spar.Config where
+module Spar.Options where
 
 import SAML2.WebSSO.Config (Config)
 

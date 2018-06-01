@@ -1,7 +1,7 @@
 module Main where
 
 import Spar.API
-import Spar.Config
+import Spar.Options
 import Util.Options
 
 main :: IO ()

@@ -1,6 +1,6 @@
 module Spar.API where
 
-import Spar.Config
+import Spar.Options
 
 runServer :: Opts -> IO ()
 runServer = error . show
