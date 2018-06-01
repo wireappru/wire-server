@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 61a0e673446269c7c634dc95b39e4d65d75b66a587dbb499defbe9978ce205d3
+-- hash: f4585c65603f8fc4475719297edb0b8fec1549afc87d05c70bbe9ac82e81fcb4
 
 name:           spar
 version:        0.1
@@ -20,7 +20,7 @@ cabal-version:  >= 1.10
 library
   exposed-modules:
       Spar.API
-      Spar.Config
+      Spar.Options
       Spar.Types
   other-modules:
       Paths_spar
