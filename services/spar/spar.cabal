@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f4585c65603f8fc4475719297edb0b8fec1549afc87d05c70bbe9ac82e81fcb4
+-- hash: ebe5e5307fc07a954e2f5d2057f232d337a3da1a777d78b3e250e3b9a3900ebb
 
 name:           spar
 version:        0.1
@@ -28,7 +28,8 @@ library
       src
   ghc-options: -j -O2 -Wall -Wno-redundant-constraints -fwarn-tabs -Werror
   build-depends:
-      base
+      aeson
+    , base
     , cassandra-util
     , raw-strings-qq
     , saml2-web-sso
@@ -44,7 +45,8 @@ executable spar
       exec
   ghc-options: -j -O2 -Wall -Wno-redundant-constraints -fwarn-tabs -Werror
   build-depends:
-      base
+      aeson
+    , base
     , cassandra-util
     , raw-strings-qq
     , saml2-web-sso
@@ -61,7 +63,8 @@ executable spar-integration
       test/integration
   ghc-options: -j -O2 -Wall -Wno-redundant-constraints -fwarn-tabs -Werror
   build-depends:
-      base
+      aeson
+    , base
     , cassandra-util
     , raw-strings-qq
     , saml2-web-sso
@@ -79,7 +82,8 @@ executable spar-schema
       schema/src
   ghc-options: -j -O2 -Wall -Wno-redundant-constraints -fwarn-tabs -Werror
   build-depends:
-      base
+      aeson
+    , base
     , cassandra-util
     , raw-strings-qq
     , saml2-web-sso
@@ -92,25 +96,20 @@ test-suite spec
   type: exitcode-stdio-1.0
   main-is: Main.hs
   other-modules:
+      Test.Spar.Options
       Paths_spar
   hs-source-dirs:
       test
   ghc-options: -j -O2 -Wall -Wno-redundant-constraints -fwarn-tabs -Werror -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base
+      aeson
+    , base
     , cassandra-util
-    , hedgehog
-    , hspec
-    , hspec-discover
-    , hspec-wai
-    , pretty-show
-    , process
     , raw-strings-qq
     , saml2-web-sso
-    , shelly
     , spar
-    , temporary
+    , tasty
+    , tasty-hunit
     , tinylog
     , types-common
-    , uniplate
   default-language: Haskell2010

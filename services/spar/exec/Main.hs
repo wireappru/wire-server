@@ -6,7 +6,9 @@ import Util.Options
 
 main :: IO ()
 main = do
-  let desc = "Brig - User Service"
-      defaultPath = "/etc/wire/brig/conf/brig.yaml"
+  -- TODO: why do we have withOpenSSL in the services?  shouldn't ssl be solely handled by nginz?
+
+  let desc = "Spar - SSO Service"
+      defaultPath = "/etc/wire/spar/conf/spar.yaml"
   options <- getOptions desc cliOptsParser defaultPath
   runServer options

@@ -12,6 +12,7 @@ description:   'See README.md'
 ghc-options: -j -O2 -Wall -Wno-redundant-constraints -fwarn-tabs -Werror
 
 dependencies:
+  - aeson
   - base
   - cassandra-util
   - raw-strings-qq
@@ -30,16 +31,9 @@ tests:
       - test
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
     dependencies:
-      - hedgehog
-      - hspec
-      - hspec-discover
-      - hspec-wai
-      - pretty-show
-      - process
-      - shelly
       - spar
-      - temporary
-      - uniplate
+      - tasty
+      - tasty-hunit
 
 executables:
   spar:
