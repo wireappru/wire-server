@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ebe5e5307fc07a954e2f5d2057f232d337a3da1a777d78b3e250e3b9a3900ebb
+-- hash: c29ccd37f88910c0b8aa9ca5efba5313a97d31c1b47f4734a327d5138604fa0e
 
 name:           spar
 version:        0.1
@@ -94,9 +94,9 @@ executable spar-schema
 
 test-suite spec
   type: exitcode-stdio-1.0
-  main-is: Main.hs
+  main-is: Spec.hs
   other-modules:
-      Test.Spar.Options
+      Test.Spar.OptionsSpec
       Paths_spar
   hs-source-dirs:
       test
@@ -105,11 +105,11 @@ test-suite spec
       aeson
     , base
     , cassandra-util
+    , hspec
+    , hspec-discover
     , raw-strings-qq
     , saml2-web-sso
     , spar
-    , tasty
-    , tasty-hunit
     , tinylog
     , types-common
   default-language: Haskell2010

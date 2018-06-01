@@ -26,14 +26,14 @@ library:
 
 tests:
   spec:
-    main: Main.hs
+    main: Spec.hs
     source-dirs:
       - test
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
     dependencies:
       - spar
-      - tasty
-      - tasty-hunit
+      - hspec
+      - hspec-discover
 
 executables:
   spar:
