@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c29ccd37f88910c0b8aa9ca5efba5313a97d31c1b47f4734a327d5138604fa0e
+-- hash: 80e23420218dc2a14baf239f5fddcfeb4300767ced888739ab2fc0b9d97b4000
 
 name:           spar
 version:        0.1
@@ -96,6 +96,7 @@ test-suite spec
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Test.Spar.APISpec
       Test.Spar.OptionsSpec
       Paths_spar
   hs-source-dirs:
