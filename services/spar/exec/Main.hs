@@ -1,7 +1,12 @@
 module Main where
 
-import Control.Concurrent
-import Control.Monad
+import Spar.API
+import Spar.Config
+import Util.Options
 
 main :: IO ()
-main = forever $ print "." >> threadDelay 1000000
+main = do
+  let desc = "Brig - User Service"
+      defaultPath = "/etc/wire/brig/conf/brig.yaml"
+  options <- getOptions desc cliOptsParser defaultPath
+  runServer options
