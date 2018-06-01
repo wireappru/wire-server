@@ -13,12 +13,14 @@ ghc-options: -j -O2 -Wall -Wno-redundant-constraints -fwarn-tabs -Werror
 
 dependencies:
   - base
+  - cassandra-util
+  - raw-strings-qq
   - saml2-web-sso
+  - tinylog
+  - types-common
 
 library:
   source-dirs:
-    - src
-  include-dirs:
     - src
 
 tests:
@@ -43,9 +45,15 @@ executables:
   spar:
     main: Main.hs
     source-dirs: exec
+    dependencies:
+      - spar
   spar-schema:
     main: Main.hs
     source-dirs: schema/src
+    dependencies:
+      - spar
   spar-integration:
     main: Main.hs
     source-dirs: test/integration
+    dependencies:
+      - spar
