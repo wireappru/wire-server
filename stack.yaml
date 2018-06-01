@@ -51,13 +51,15 @@ packages:
     git: https://github.com/tiago-loureiro/aws
     commit: bade13d1f73ed82c2b3eafda0bcb16d283da909e
   extra-dep: true
+
+# services/spar:
 - location:
-    git: https://github.com/wireapp/hsaml2
-    commit: 60cbde9805bfc6a39d8064ad323c4a009bbc6187
+    git: https://github.com/wireapp/saml2-web-sso
+    commit: 4662d2b10ad2bc830fd78469fc8bd3f8903d0df0
   extra-dep: true
 - location:
-    git: https://github.com/wireapp/saml2-web-sso  # `/services/spar`
-    commit: a0e0386415487323ac6abbc4f93cafd6d4598a1a
+    git: https://github.com/wireapp/hsaml2
+    commit: d917572c09591b9fa8c8907e41ba587b8d0f70d3
   extra-dep: true
 - location:
     git: https://github.com/wireapp/stack-prism  # isomorphic xml parsing/rendering in `/services/spar`
