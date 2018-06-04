@@ -19,15 +19,15 @@ runServer = error . show
 
 
 onSuccess :: (HasCallStack, MonadSpar m) => SAML.UserId -> m Void
-onSuccess = undefined
+onSuccess uid = forwardBrigLogin =<< maybe (createUser uid) pure =<< getUser uid
 
 
-class MonadSpar m where
+class Monad m => MonadSpar m where
   -- locally read user record from Cassandra
-  getUser :: SAML.UserId -> m UserId
+  getUser :: SAML.UserId -> m (Maybe UserId)
 
   -- create user locally and on brig
-  createUser :: SAML.UserId -> m ()
+  createUser :: SAML.UserId -> m UserId
 
   -- get session token from brig and redirect user past login process
   forwardBrigLogin :: UserId -> m Void
