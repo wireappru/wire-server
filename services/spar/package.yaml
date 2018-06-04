@@ -41,13 +41,19 @@ executables:
     source-dirs: exec
     dependencies:
       - spar
+
   spar-schema:
     main: Main.hs
     source-dirs: schema/src
     dependencies:
       - spar
+
   spar-integration:
-    main: Main.hs
-    source-dirs: test/integration
+    main: Spec.hs
+    source-dirs:
+      - test/integration
+      - test
     dependencies:
       - spar
+      - hspec
+      - hspec-discover
