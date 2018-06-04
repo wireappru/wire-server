@@ -5,23 +5,32 @@
 module Spar.API where
 
 import Control.Monad.Except
+import Data.Id
 import GHC.Stack
-import SAML2.WebSSO
+import SAML2.WebSSO hiding (UserId(..))
 import Servant
 import Spar.Options
+
+import qualified SAML2.WebSSO as SAML
 
 
 runServer :: Opts -> IO ()
 runServer = error . show
 
 
-onSuccess :: (HasCallStack, MonadSpar m) => UserId -> m Void
+onSuccess :: (HasCallStack, MonadSpar m) => SAML.UserId -> m Void
 onSuccess = undefined
 
 
 class MonadSpar m where
-  createUser :: UserId -> m ()
-  forwardBrigLogin :: m Void
+  -- locally read user record from Cassandra
+  getUser :: SAML.UserId -> m UserId
+
+  -- create user locally and on brig
+  createUser :: SAML.UserId -> m ()
+
+  -- get session token from brig and redirect user past login process
+  forwardBrigLogin :: UserId -> m Void
 
 
 newtype Spar a = Spar (IO a)
@@ -49,5 +58,6 @@ instance SPHandler Spar where
   nt = undefined
 
 instance MonadSpar Spar where
+  getUser = undefined
   createUser = undefined
   forwardBrigLogin = undefined
