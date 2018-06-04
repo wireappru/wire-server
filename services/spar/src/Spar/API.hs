@@ -5,6 +5,7 @@
 module Spar.API where
 
 import Control.Monad.Except
+import Control.Monad.Reader
 import Data.Id
 import GHC.Stack
 import SAML2.WebSSO hiding (UserId(..))
@@ -12,6 +13,7 @@ import Servant
 import Spar.Options
 
 import qualified SAML2.WebSSO as SAML
+import qualified System.Logger as Log
 
 
 runServer :: Opts -> IO ()
@@ -33,16 +35,25 @@ class Monad m => MonadSpar m where
   forwardBrigLogin :: UserId -> m Void
 
 
-newtype Spar a = Spar (IO a)
-  deriving (Functor, Applicative, Monad)
+newtype Spar a = Spar { fromSpar :: ReaderT (Opts, Log.Logger) IO a }
+  deriving (Functor, Applicative, Monad, MonadReader (Opts, Log.Logger))
 
 instance HasConfig Spar where
-  getConfig = undefined
+  getConfig = asks (saml . fst)
 
 instance SP Spar where
-  logger = undefined
-  createUUID = undefined
-  getNow = undefined
+  logger level msg = asks snd >>= \logger -> Spar $ Log.log logger level' (Log.msg msg)
+    where
+      level' = case level of
+        SILENT   -> Log.Fatal
+        CRITICAL -> Log.Fatal
+        ERROR    -> Log.Error
+        WARN     -> Log.Warn
+        INFO     -> Log.Info
+        DEBUG    -> Log.Debug
+
+  createUUID = Spar createUUIDIO
+  getNow = Spar getNowIO
 
 instance SPStore Spar where
   storeRequest = undefined
